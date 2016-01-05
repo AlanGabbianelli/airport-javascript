@@ -10,7 +10,7 @@ Plane.prototype.land = function(airport) {
 };
 
 Plane.prototype.takeOff = function(airport) {
-  if (this.weather.isStormy === true) throw new Error('Cannot take off when weather is stormy');
+  if (this.weather.isStormy() === true) throw new Error('Cannot take off when weather is stormy');
   airport.release(this);
   this.isFlying = true;
   return 'The plane has departed the airport';

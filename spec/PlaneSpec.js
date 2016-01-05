@@ -5,6 +5,7 @@ describe("Plane", function() {
 
   beforeEach(function() {
     plane = new Plane();
+    spyOn(plane.weather, 'isStormy').and.returnValue(false);
     airport = {
       dock: function() {},
       release: function() {}
@@ -17,7 +18,8 @@ describe("Plane", function() {
 
   describe('#land', function() {
     it("confirms landing with a message", function() {
-      expect(plane.land(airport)).toEqual('The plane has landed at the airport');
+      landingMessage = 'The plane has landed at the airport';
+      expect(plane.land(airport)).toEqual(landingMessage);
     });
 
     it('confirms the plane is not flying', function() {
@@ -33,8 +35,10 @@ describe("Plane", function() {
     });
 
     it('raises an error when the weather is stormy', function() {
-      spyOn(Math, 'random').and.returnValue(0.9);
-      expect(function () { plane.takeOff(airport); }).toThrowError("Cannot take off when weather is stormy");
+      error = "Cannot take off when weather is stormy";
+      plane1 = new Plane();
+      spyOn(plane1.weather, 'isStormy').and.returnValue(true);
+      expect(function () { plane1.takeOff(airport); }).toThrowError( error );
     });
 
     it('confirms the plane is flying', function() {
@@ -43,7 +47,8 @@ describe("Plane", function() {
     });
 
     it('confirms departure with a message', function() {
-      expect(plane.takeOff(airport)).toEqual('The plane has departed the airport');
+      departureMessage = 'The plane has departed the airport';
+      expect(plane.takeOff(airport)).toEqual(departureMessage);
     });
   });
 });
