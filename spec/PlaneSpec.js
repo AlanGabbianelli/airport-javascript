@@ -32,6 +32,11 @@ describe("Plane", function() {
       plane.land(airport);
     });
 
+    it('raises an error when the weather is stormy', function() {
+      spyOn(Math, 'random').and.returnValue(0.9);
+      expect(function () { plane.takeOff(airport); }).toThrowError("Cannot take off when weather is stormy");
+    });
+
     it('confirms the plane is flying', function() {
       plane.takeOff(airport);
       expect(plane.isFlying).toEqual(true);

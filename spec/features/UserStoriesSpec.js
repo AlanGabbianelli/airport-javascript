@@ -5,6 +5,7 @@ describe("User Stories", function() {
   beforeEach(function() {
     plane = new Plane();
     airport = new Airport();
+    weather = new Weather();
   });
 
   // As an air traffic controller
@@ -29,5 +30,15 @@ describe("User Stories", function() {
     expect(plane.isFlying).toEqual(true);
     expect(airport.hangar).not.toContain(plane);
 
+  });
+
+  // As an air traffic controller
+  // To ensure safety
+  // I want to prevent takeoff when weather is stormy
+
+  xit('An air traffic controller should be able to instruct a plane not to take off when weather is stormy', function() {
+    plane.land(airport);
+    spyOn(Math, 'random').and.returnValue(0.9);
+    expect(function () { plane.takeOff(airport); }).toThrowError('Cannot take off when weather is stormy');
   });
 });
