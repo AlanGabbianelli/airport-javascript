@@ -9,6 +9,7 @@ describe("Plane", function() {
     airport = {
       dock: function() {},
       release: function() {}
+
     };
   });
 
@@ -50,16 +51,22 @@ describe("Plane", function() {
 
   describe('Weather is stormy', function() {
 
-    // describe('#land', function() {
-    //
-    // });
+    beforeEach(function() {
+      plane1 = new Plane();
+      spyOn(plane1.weather, 'isStormy').and.returnValue(true);
+    });
+
+    describe('#land', function() {
+      it('raises an error when the weather is stormy', function(){
+        error1 = 'Cannot land when weather is stormy';
+        expect(function () { plane1.land(airport); }).toThrowError( error1 );
+      });
+    });
 
     describe('#takeOff', function() {
       it('raises an error when the weather is stormy', function() {
-        error = "Cannot take off when weather is stormy";
-        plane1 = new Plane();
-        spyOn(plane1.weather, 'isStormy').and.returnValue(true);
-        expect(function () { plane1.takeOff(airport); }).toThrowError( error );
+        error2 = "Cannot take off when weather is stormy";
+        expect(function () { plane1.takeOff(airport); }).toThrowError( error2 );
       });
     });
   });

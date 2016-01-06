@@ -38,8 +38,17 @@ describe("User Stories", function() {
 
   it('An air traffic controller should be able to instruct a plane not to take off when weather is stormy', function() {
     plane1 = new Plane();
-    plane1.land(airport);
     spyOn(plane1.weather, 'isStormy').and.returnValue(true);
     expect(function () { plane1.takeOff(airport); }).toThrowError('Cannot take off when weather is stormy');
+  });
+
+  // As an air traffic controller
+  // To ensure safety
+  // I want to prevent landing when weather is stormy
+
+  it('An air traffic controller should be able to instruct a plane not to land when weather is stormy', function(){
+    plane2 = new Plane();
+    spyOn(plane2.weather, 'isStormy').and.returnValue(true);
+    expect(function () { plane2.land(airport); }).toThrowError('Cannot land when weather is stormy');
   });
 });

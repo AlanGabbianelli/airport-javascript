@@ -4,6 +4,7 @@ var Plane = function() {
 };
 
 Plane.prototype.land = function(airport) {
+  if (this.weather.isStormy() === true) throw new Error('Cannot land when weather is stormy');
   airport.dock(this);
   this.isFlying = false;
   return "The plane has landed at the airport";
