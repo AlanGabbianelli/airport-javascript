@@ -12,3 +12,7 @@ Airport.prototype.release = function(plane) {
   var planeLocation = this.hangar.indexOf(plane);
   this.hangar.splice(planeLocation, 1);
 };
+
+Airport.prototype.overrideCAPACITY = function(newCAPACITY) {
+  this.CAPACITY = newCAPACITY;
+};

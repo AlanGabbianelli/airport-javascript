@@ -32,9 +32,15 @@ describe("Airport", function() {
     });
 
     it("should not land planes if airport hangar is at capacity", function(){
-      for (i = 0; i < 20; i++) { airport.dock(plane);};
+      for (i = 0; i < 20; i++) { airport.dock(plane);}
       expect(function () { airport.dock(plane); }).toThrowError( 'Cannot land, airport is full' );
     });
   });
 
+  describe('#overrideCAPACITY', function() {
+    it('should override the default capacity constant', function() {
+      airport.overrideCAPACITY(30);
+      expect(airport.CAPACITY).toEqual(30);
+    });
+  });
 });

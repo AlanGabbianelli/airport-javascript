@@ -60,4 +60,13 @@ describe("User Stories", function() {
     for (i = 0; i < 20; i++){ plane.land(airport); }
     expect(function(){plane.land(airport);}).toThrowError('Cannot land, airport is full');
   });
+
+  // As the system designer
+  // So that the software can be used for many different airports
+  // I would like a default airport capacity that can be overridden as appropriate
+
+  it('The system designer should be able to override the airport capacity', function() {
+    airport.overrideCAPACITY(30);
+    expect(airport.CAPACITY).toEqual(30);
+  });
 });
