@@ -26,4 +26,15 @@ describe("Airport", function() {
     });
   });
 
+  describe('#capacity', function(){
+    it("should have a capacity of 20", function(){
+      expect(airport.CAPACITY).toEqual(20);
+    });
+
+    it("should not land planes if airport hangar is at capacity", function(){
+      for (i = 0; i < 20; i++) { airport.dock(plane);};
+      expect(function () { airport.dock(plane); }).toThrowError( 'Cannot land, airport is full' );
+    });
+  });
+
 });

@@ -51,4 +51,13 @@ describe("User Stories", function() {
     spyOn(plane2.weather, 'isStormy').and.returnValue(true);
     expect(function () { plane2.land(airport); }).toThrowError('Cannot land when weather is stormy');
   });
+
+  // As an air traffic controller
+  // To ensure safety
+  // I want to prevent landing when the airport is full
+
+  it('The airport should not allow more than 20 planes to land', function(){
+    for (i = 0; i < 20; i++){ plane.land(airport); }
+    expect(function(){plane.land(airport);}).toThrowError('Cannot land, airport is full');
+  });
 });

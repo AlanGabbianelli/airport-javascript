@@ -8,8 +8,8 @@ describe("Plane", function() {
     spyOn(plane.weather, 'isStormy').and.returnValue(false);
     airport = {
       dock: function() {},
-      release: function() {}
-
+      release: function() {},
+      CAPACITY: function() { }
     };
   });
 
@@ -47,7 +47,6 @@ describe("Plane", function() {
       });
     });
   });
-
 
   describe('Weather is stormy', function() {
 

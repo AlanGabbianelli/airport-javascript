@@ -1,8 +1,10 @@
 var Airport = function() {
   this.hangar = [];
+  this.CAPACITY = 20;
 };
 
 Airport.prototype.dock = function(plane) {
+  if(this.hangar.length >= this.CAPACITY)throw new Error('Cannot land, airport is full');
   this.hangar.push(plane);
 };
 
